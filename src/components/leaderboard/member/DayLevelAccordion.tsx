@@ -8,33 +8,33 @@ interface DayLevelAccordionProps {
 const DayLevelAccordion: FC<DayLevelAccordionProps> = ({ completionDayLevel }) => {
     return (
         <div className="bg-gray-900 text-gray-300 p-4 rounded-md shadow-md font-mono">
-            {/* Header */}
             <div className="grid grid-cols-4 border-b border-gray-700 pb-2 text-sm">
-                <span className="col-span-1 text-left">Day</span>
-                <span className="col-span-1 text-center">Task</span>
-                <span className="col-span-2 text-center">Completion Time</span>
+                <span className="col-span-1">Day</span>
+                <span className="col-span-1">Task 1</span>
+                <span className="col-span-1">Task 2</span>
+                <span className="col-span-1">Diff</span>
             </div>
 
-            {/* Table Body */}
             {completionDayLevel.map((dayLevel, idx) => (
-                <div key={idx} className="border-b border-gray-800 last:border-none">
-                    {/* Day Row */}
-                    <div className="grid grid-cols-4 py-2 text-xs font-bold bg-gray-800">
-                        <span className="col-span-1">{dayLevel.day}</span>
-                        <span className="col-span-3"></span>
+                <div className="grid grid-cols-4 border-b border-gray-700 pb-2 text-sm hover:bg-gray-800" key={idx}>
+                    <div className="col-span-1">
+                        {dayLevel.day}
                     </div>
 
-                    {/* Stars / Tasks */}
                     {dayLevel.stars.map((star, starIdx) => (
                         <div
                             key={starIdx}
-                            className="grid grid-cols-4 py-1 text-xs hover:bg-gray-800"
+                            className="col-span-1 py-1 text-xs"
                         >
-                            <span className="col-span-1"></span>
-                            <span className="col-span-1 text-center">{star.task}</span>
-                            <span className="col-span-2 text-center">{star.diffTime}</span>
+                            {star.diffTime}
                         </div>
                     ))}
+
+                    <div
+                        className="col-span-1 py-1 text-xs"
+                    >
+                        {dayLevel.diff}
+                    </div>
                 </div>
             ))}
         </div>

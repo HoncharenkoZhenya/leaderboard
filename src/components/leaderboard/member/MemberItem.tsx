@@ -16,7 +16,7 @@ const MemberItem: FC<MemberItemProps> = ({ member, index }) => {
         <>
             <div className={`col-span-5 grid grid-cols-5 gap-2 p-4 border border-gray-300 ${index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-700'}`}>
                 <div>{member.id}</div>
-                <div>{member.name}</div>
+                <div>{member.name ?? 'Anonymous'}</div>
                 <div>{member.stars}</div>
                 <div>{member.local_score}</div>
                 <div>

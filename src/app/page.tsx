@@ -1,15 +1,14 @@
-// import axios from 'axios'
-// import { ApiLeaderboard } from '@/types/api-responces/leaderboard'
-// import { deserializeApiLeaderboard } from '@/utils/api/leaderboard';
+import axios from 'axios'
+import { ApiLeaderboard } from '@/types/api-responces/leaderboard'
+import { deserializeApiLeaderboard } from '@/utils/api/leaderboard';
 import MemberList from '@/components/leaderboard/member/MemberList';
 
 export const revalidate = 900
 
 export default async function Home() {
-    // const apiData = (await axios.get<ApiLeaderboard>(`${process.env.API_DOMAIN}/api/get-data`)).data;
+    const apiData = (await axios.get<ApiLeaderboard>(`${process.env.API_DOMAIN}/api/get-data`)).data;
 
-    const leaderboard = {members: []};
-    // const leaderboard = deserializeApiLeaderboard(apiData);
+    const leaderboard = deserializeApiLeaderboard(apiData);
 
     return (
         <main>

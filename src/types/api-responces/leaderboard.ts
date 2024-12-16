@@ -39,6 +39,7 @@ export interface Member {
 export interface DayLevel {
     day: string;
     stars: Star[];
+    diff: string;
 }
 
 export interface Star {
