@@ -1,22 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 import fs from 'fs'
-import path from 'path'
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<string>,
 ) {
-    const folderName = path.join(process.cwd(), 'data')
-
-    if (!fs.existsSync(folderName)) {
-        fs.mkdirSync(folderName)
-    }
-
-    const filePath = path.join(folderName, 'event.json')
-
     try {
-        const fileData = fs.readFileSync(filePath, 'utf8')
+        const fileData = fs.readFileSync('/tmp/leaderboard.json', 'utf8')
 
         const data = JSON.parse(fileData)
 
@@ -37,7 +28,10 @@ export default async function handler(
         },
     })
 
-    fs.writeFileSync(filePath, JSON.stringify({ response: response.data, createdTS: new Date().getTime() }))
+    fs.writeFileSync('/tmp/leaderboard.json', JSON.stringify({
+        response: response.data,
+        createdTS: new Date().getTime(),
+    }))
 
     res.status(200).json(response.data)
 }
