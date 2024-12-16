@@ -1,13 +1,13 @@
-export interface Leaderboard {
+export interface ApiLeaderboard {
     owner_id: number;
     day1_ts: number;
     event: string;
-    members: { [key: string]: Member };
+    members: { [key: string]: ApiMember };
 }
 
-export interface Member {
+export interface ApiMember {
     global_score: number;
-    completion_day_level: { [key: string]: DayLevel };
+    completion_day_level: { [key: string]: ApiDayLevel };
     local_score: number;
     last_star_ts: number;
     id: number;
@@ -15,11 +15,33 @@ export interface Member {
     name: string;
 }
 
+export interface ApiDayLevel {
+    [key: string]: ApiStar;
+}
+
+export interface ApiStar {
+    get_star_ts: number;
+    star_index: number;
+}
+
+export interface Leaderboard {
+    members: Member[];
+}
+
+export interface Member {
+    completion_day_level: DayLevel[];
+    local_score: number;
+    id: number;
+    stars: number;
+    name: string;
+}
+
 export interface DayLevel {
-    [key: string]: Star;
+    day: string;
+    stars: Star[];
 }
 
 export interface Star {
-    get_star_ts: number;
-    star_index: number;
+    task: string;
+    diffTime: string;
 }
